@@ -120,7 +120,7 @@ READ_LOCK_STATUS   = TRUE
   # ACPI Tables
   FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
     SECTION RAW = Lumia535Pkg/ACPITables/Blobs/DBG2.acp
-    SECTION RAW = Lumia535Pkg/ACPITables/Blobs/DSDT.acp
+    SECTION RAW = Lumia535Pkg/ACPITables/Blobs/DSDT.aml
     SECTION RAW = Lumia535Pkg/ACPITables/Blobs/FACS.acp
     SECTION RAW = Lumia535Pkg/ACPITables/Blobs/FADT.acp
     SECTION RAW = Lumia535Pkg/ACPITables/Blobs/GTDT.acp
