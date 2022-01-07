@@ -422,8 +422,13 @@
   NetworkPkg/TcpDxe/TcpDxe.inf
   NetworkPkg/Udp4Dxe/Udp4Dxe.inf
   
-  # ACPI AND SMBIOS
-  Lumia535Pkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
+# ACPI and SMBIOS
+  # We use pre-built ACPI tables, so only core components are loaded
+  Lumia950XLPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
+  MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
+  MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
+  MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
+
   # Shell
   ShellPkg/Application/Shell/Shell.inf {
     <LibraryClasses>

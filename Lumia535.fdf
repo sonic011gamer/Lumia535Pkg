@@ -111,8 +111,24 @@ READ_LOCK_STATUS   = TRUE
   INF NetworkPkg/TcpDxe/TcpDxe.inf
   INF NetworkPkg/Udp4Dxe/Udp4Dxe.inf
 
-  #ACPI and SMBIOS
+  # ACPI and SMBIOS
+  INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
+  INF MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
+  INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
   INF Lumia535Pkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
+
+  # ACPI Tables
+  FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
+    SECTION RAW = Lumia535Pkg/ACPITables/Blobs/DBG2.acp
+    SECTION RAW = Lumia535Pkg/ACPITables/Blobs/DSDT.acp
+    SECTION RAW = Lumia535Pkg/ACPITables/Blobs/FACS.acp
+    SECTION RAW = Lumia535Pkg/ACPITables/Blobs/FADT.acp
+    SECTION RAW = Lumia535Pkg/ACPITables/Blobs/GTDT.acp
+    SECTION RAW = Lumia535Pkg/ACPITables/Blobs/MADT.acp
+    SECTION RAW = Lumia535Pkg/ACPITables/Blobs/SSDT.aml
+    SECTION UI = "ACPITables"
+  }
+
   # Shell
   INF ShellPkg/Application/Shell/Shell.inf
 
