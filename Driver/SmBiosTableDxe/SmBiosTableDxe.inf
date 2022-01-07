@@ -15,9 +15,6 @@
   gArmTokenSpaceGuid.PcdSystemMemoryBase
   gArmTokenSpaceGuid.PcdSystemMemorySize
   gArmPlatformTokenSpaceGuid.PcdCoreCount
-  gLumia535PkgTokenSpaceGuid.PcdSmbiosSystemModel
-  gLumia535PkgTokenSpaceGuid.PcdSmbiosSystemRetailModel
-  gLumia535PkgTokenSpaceGuid.PcdSmbiosProcessorModel
 
 [Packages]
   ArmPkg/ArmPkg.dec
