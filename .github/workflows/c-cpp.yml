@@ -14,10 +14,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Update APT sources
-    - run: sudo apt update
+      run: sudo apt update
     
     - name: Install dependencies
-    - run: sudo apt install build-essential crossbuild-essential-armhf uuid-dev iasl git nasm python3-distutils
+      run: sudo apt install build-essential crossbuild-essential-armhf uuid-dev iasl git nasm python3-distutils
     
     - name: Create EDK2 workspace
       run: mkdir ~/EDK2WorkDir && cd ~/EDK2WorkDir
@@ -31,14 +31,14 @@ jobs:
     - name: Set up environment variables
       run: cd Lumia535Pkg && export GCC5_ARM_PREFIX=arm-linux-gnueabi-
       
-      -name: Build EDK2
-      -run: build -a ARM -p Lumia650Pkg/Lumia650.dsc -t GCC5 -j$(nproc) -s -n 0
+    -name: Build EDK2
+     run: build -a ARM -p Lumia650Pkg/Lumia650.dsc -t GCC5 -j$(nproc) -s -n 0
       
-      -name: Create ELF binary
-      -run: cd Build/Lumia650-ARM/DEBUG_GCC5/FV && arm-linux-gnueabi-objcopy -I binary -O elf32-littlearm --binary-architecture arm MSM8612_EFI.fd MSM8612_EFI.fd.elf && arm-linux-gnueabi-ld MSM8612_EFI.fd.elf -T ../../../../Lumia535Pkg/FvWrapper.ld -o ../../emmc_appsboot.mbn
+    -name: Create ELF binary
+     run: cd Build/Lumia650-ARM/DEBUG_GCC5/FV && arm-linux-gnueabi-objcopy -I binary -O elf32-littlearm --binary-architecture arm MSM8612_EFI.fd MSM8612_EFI.fd.elf && arm-linux-gnueabi-ld MSM8612_EFI.fd.elf -T ../../../../Lumia535Pkg/FvWrapper.ld -o ../../emmc_appsboot.mbn
       
-      -name: Publish emmc_appsboot.mbn
-      -uses: actions/upload-artifact@v3
-      with:
-        name: emmc_appsboot.mbn
-        path: ~/EDK2WorkDir/edk2/Build/Lumia535-ARM/emmc_appsboot.mbn
+    -name: Publish emmc_appsboot.mbn
+    -uses: actions/upload-artifact@v3
+    with:
+      name: emmc_appsboot.mbn
+      path: ~/EDK2WorkDir/edk2/Build/Lumia535-ARM/emmc_appsboot.mbn
