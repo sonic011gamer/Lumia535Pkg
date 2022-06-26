@@ -20,10 +20,10 @@ jobs:
       run: sudo apt install build-essential crossbuild-essential-armhf uuid-dev iasl git nasm python3-distutils
     
     - name: Create EDK2 workspace
-      run: mkdir /home/runner/work/EDK2WorkDir && cd /home/runner/work/EDK2WorkDir
+      run: mkdir /home/runner/work/EDK2WorkDir
       
     - name: Clone sources
-      run: git clone https://github.com/Tianocore/edk2.git -b stable/202011 --depth=1 --recursive && git clone https://github.com/sonic011gamer/Lumia535Pkg --depth=1 /home/runner/work/EDK2WorkDir/edk2/Lumia535Pkg
+      run: git clone https://github.com/Tianocore/edk2.git -b stable/202011 --depth=1 --recursive /home/runner/work/EDK2WorkDir/edk2 && git clone https://github.com/sonic011gamer/Lumia535Pkg --depth=1 /home/runner/work/EDK2WorkDir/edk2/Lumia535Pkg
       
     - name: Build BaseTools
       run: source /home/runner/work/EDK2WorkDir/edk2/edksetup.sh && make -C /home/runner/work/EDK2WorkDir/edk2/BaseTools/
