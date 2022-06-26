@@ -29,10 +29,10 @@ jobs:
       run: cd edk2 && source edksetup.sh && make -C BaseTools/
       
     - name: Set up environment variables
-      run: cd ~/EDK2WorkDir/edk2/Lumia535Pkg && export GCC5_ARM_PREFIX=arm-linux-gnueabi-
+      run: export GCC5_ARM_PREFIX=arm-linux-gnueabi-
       
     - name: Build EDK2
-      run: . edksetup.sh && build -a ARM -p Lumia535Pkg/Lumia535.dsc -t GCC5 -j$(nproc) -s -n 0
+      run: cd ~/EDK2WorkDir/edk2/ && . edksetup.sh && build -a ARM -p Lumia535Pkg/Lumia535.dsc -t GCC5 -j$(nproc) -s -n 0
       
     - name: Create ELF binary
       run: cd Build/Lumia535-ARM/DEBUG_GCC5/FV && arm-linux-gnueabi-objcopy -I binary -O elf32-littlearm --binary-architecture arm MSM8612_EFI.fd MSM8612_EFI.fd.elf && arm-linux-gnueabi-ld MSM8612_EFI.fd.elf -T ../../../../Lumia535Pkg/FvWrapper.ld -o ../../emmc_appsboot.mbn
