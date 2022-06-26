@@ -40,6 +40,6 @@ jobs:
       
       -name: Publish emmc_appsboot.mbn
       -uses: actions/upload-artifact@v3
-        with:
-          name: emmc_appsboot.mbn
-          path: ~/EDK2WorkDir/edk2/Build/Lumia535-ARM/emmc_appsboot.mbn
+      with:
+        name: emmc_appsboot.mbn
+        path: ~/EDK2WorkDir/edk2/Build/Lumia535-ARM/emmc_appsboot.mbn
