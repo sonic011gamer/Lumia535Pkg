@@ -23,19 +23,19 @@ jobs:
       run: mkdir ~/EDK2WorkDir && cd ~/EDK2WorkDir
       
     - name: Clone sources
-      run: git clone https://github.com/Tianocore/edk2.git --depth=1 --recursive && git clone https://github.com/sonic011gamer/Lumia535Pkg --depth=1 edk2/Lumia535Pkg
+      run: git clone https://github.com/Tianocore/edk2.git -b stable/202011 --depth=1 --recursive && git clone https://github.com/sonic011gamer/Lumia535Pkg --depth=1 ~/EDK2WorkDir/edk2/Lumia535Pkg
       
     - name: Build BaseTools
       run: cd edk2 && source edksetup.sh && make -C BaseTools/
       
     - name: Set up environment variables
-      run: cd Lumia535Pkg && export GCC5_ARM_PREFIX=arm-linux-gnueabi-
+      run: cd ~/EDK2WorkDir/edk2/Lumia535Pkg && export GCC5_ARM_PREFIX=arm-linux-gnueabi-
       
     - name: Build EDK2
-      run: build -a ARM -p Lumia650Pkg/Lumia650.dsc -t GCC5 -j$(nproc) -s -n 0
+      run: build -a ARM -p Lumia535Pkg/Lumia535.dsc -t GCC5 -j$(nproc) -s -n 0
       
     - name: Create ELF binary
-      run: cd Build/Lumia650-ARM/DEBUG_GCC5/FV && arm-linux-gnueabi-objcopy -I binary -O elf32-littlearm --binary-architecture arm MSM8612_EFI.fd MSM8612_EFI.fd.elf && arm-linux-gnueabi-ld MSM8612_EFI.fd.elf -T ../../../../Lumia535Pkg/FvWrapper.ld -o ../../emmc_appsboot.mbn
+      run: cd Build/Lumia535-ARM/DEBUG_GCC5/FV && arm-linux-gnueabi-objcopy -I binary -O elf32-littlearm --binary-architecture arm MSM8612_EFI.fd MSM8612_EFI.fd.elf && arm-linux-gnueabi-ld MSM8612_EFI.fd.elf -T ../../../../Lumia535Pkg/FvWrapper.ld -o ../../emmc_appsboot.mbn
       
     - uses: actions/upload-artifact@v3
       with:
