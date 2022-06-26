@@ -26,16 +26,16 @@ jobs:
       run: git clone https://github.com/Tianocore/edk2.git -b stable/202011 --depth=1 --recursive /home/runner/work/EDK2WorkDir/edk2 && git clone https://github.com/sonic011gamer/Lumia535Pkg --depth=1 /home/runner/work/EDK2WorkDir/edk2/Lumia535Pkg
       
     - name: Build BaseTools
-      run: source /home/runner/work/EDK2WorkDir/edk2/edksetup.sh && make -C /home/runner/work/EDK2WorkDir/edk2/BaseTools/
+      run: cd /home/runner/work/EDK2WorkDir/edk2 && source /home/runner/work/EDK2WorkDir/edk2/edksetup.sh && make -C /home/runner/work/EDK2WorkDir/edk2/BaseTools/
       
     - name: Set up environment variables
-      run: export GCC5_ARM_PREFIX=arm-linux-gnueabi-
+      run: export GCC5_ARM_PREFIX=arm-linux-gnueabihf-
       
     - name: Build EDK2
-      run: . /home/runner/work/EDK2WorkDir/edk2/edksetup.sh && build -a ARM -p /home/runner/work/EDK2WorkDir/edk2/Lumia535Pkg/Lumia535.dsc -t GCC5 -j$(nproc) -s -n 0
+      run: cd /home/runner/work/EDK2WorkDir/edk2 && . /home/runner/work/EDK2WorkDir/edk2/edksetup.sh && build -a ARM -p /home/runner/work/EDK2WorkDir/edk2/Lumia535Pkg/Lumia535.dsc -t GCC5 -j$(nproc) -s -n 0
       
     - name: Create ELF binary
-      run: cd /home/runner/work/EDK2WorkDir/edk2/Build/Lumia535-ARM/DEBUG_GCC5/FV && arm-linux-gnueabi-objcopy -I binary -O elf32-littlearm --binary-architecture arm MSM8612_EFI.fd MSM8612_EFI.fd.elf && arm-linux-gnueabi-ld MSM8612_EFI.fd.elf -T /home/runner/work/EDK2WorkDir/edk2/Lumia535Pkg/FvWrapper.ld -o /home/runner/work/EDK2WorkDir/emmc_appsboot.mbn
+      run: cd /home/runner/work/EDK2WorkDir/edk2/Build/Lumia535-ARM/DEBUG_GCC5/FV && arm-linux-gnueabihf-objcopy -I binary -O elf32-littlearm --binary-architecture arm MSM8612_EFI.fd MSM8612_EFI.fd.elf && arm-linux-gnueabihf-ld MSM8612_EFI.fd.elf -T /home/runner/work/EDK2WorkDir/edk2/Lumia535Pkg/FvWrapper.ld -o /home/runner/work/EDK2WorkDir/emmc_appsboot.mbn
       
     - uses: actions/upload-artifact@v3
       with:
