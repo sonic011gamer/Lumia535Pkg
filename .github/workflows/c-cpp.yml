@@ -26,7 +26,7 @@ jobs:
       run: git clone https://github.com/Tianocore/edk2.git -b stable/202011 --depth=1 --recursive && git clone https://github.com/sonic011gamer/Lumia535Pkg --depth=1 /home/runner/work/EDK2WorkDir/edk2/Lumia535Pkg
       
     - name: Build BaseTools
-      run: cd /home/runner/work/EDK2WorkDir/edk2 && source edksetup.sh && make -C BaseTools/
+      run: source /home/runner/work/EDK2WorkDir/edk/edksetup.sh && make -C /home/runner/work/EDK2WorkDir/edk/BaseTools/
       
     - name: Set up environment variables
       run: export GCC5_ARM_PREFIX=arm-linux-gnueabi-
