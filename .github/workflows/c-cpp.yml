@@ -23,7 +23,7 @@ jobs:
       run: mkdir ~/EDK2WorkDir && cd ~/EDK2WorkDir
       
     - name: Clone sources
-      run: git clone https://github.com/Tianocore/edk2.git --depth=1 --recursive && git clone https://github.com/sonic011gamer --depth=1 edk2/Lumia535Pkg
+      run: git clone https://github.com/Tianocore/edk2.git --depth=1 --recursive && git clone https://github.com/sonic011gamer/Lumia535Pkg --depth=1 edk2/Lumia535Pkg
       
     - name: Build BaseTools
       run: cd edk2 && source edksetup.sh && make -C BaseTools/
