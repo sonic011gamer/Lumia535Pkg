@@ -47,6 +47,9 @@
   PlatformPeiLib
   PrePiHobListPointerLib
   PrePiLib
+  # MpPark
+  ArmHvcLib
+  ArmSmcLib
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdCpuVectorBaseAddress
