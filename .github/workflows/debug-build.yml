@@ -26,13 +26,12 @@ jobs:
       run: |
         cd /home/runner/work/EDK2WorkDir/
         git clone https://github.com/Tianocore/edk2.git -b stable/202011 --depth=1 --recursive 
-        git clone https://github.com/sonic011gamer/Lumia535Pkg --depth=1
+        git clone https://github.com/sonic011gamer/Lumia535Pkg --depth=1 edk2/Lumia535Pkg
       
     - name: Build BaseTools
       run: |
         cd /home/runner/work/EDK2WorkDir/edk2 
         make -C BaseTools/
-
     - name: Build EDK2
       run: |
         cd /home/runner/work/EDK2WorkDir/edk2 
@@ -42,7 +41,7 @@ jobs:
     - name: Create ELF binary
       run: |
         cd /home/runner/work/EDK2WorkDir/edk2/Build/Lumia535-ARM/DEBUG_GCC5/FV 
-        arm-linux-gnueabihf-objcopy -I binary -O elf32-littlearm --binary-architecture arm MSM8612_EFI.fd MSM8612_EFI.fd.elf && arm-linux-gnueabihf-ld MSM8612_EFI.fd.elf -T ../../../../Lumia535Pkg/FvWrapper.ld -o ../../emmc_appsboot.mbn
+        arm-linux-gnueabihf-objcopy -I binary -O elf32-littlearm --binary-architecture arm MSM8612_EFI.fd MSM8612_EFI.fd.elf && arm-linux-gnueabihf-ld MSM8612_EFI.fd.elf -T ../../../../Lumia535Pkg/FvWrapper.ld -o ../../../../../emmc_appsboot.mbn
       
     - uses: actions/upload-artifact@v3
       with:
